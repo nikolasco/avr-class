@@ -1,11 +1,11 @@
 SOURCE_FILES	= one-led-on.c
 
-TARGET_ARCH	= atmega48 # for GCC
+TARGET_ARCH	= atmega328p # for GCC
 CLOCK_SPEED	= 8000000UL # 8MHz
 
-PART_NO		= m48 # for avrdude
+PART_NO		= m328p # for avrdude
 
-PROGRAMMER	= usbtiny
+PROGRAMMER	= avrisp2
 PROGRAMMER_PORT	= usb
 
 OUT_BASE_NAME	= main
@@ -26,7 +26,7 @@ help:
 	@echo flash	install code into flash memory
 
 fuse:
-	$(AVRDUDE_BASE_CMD) -B 10 -U lfuse:w:0xe2:m -U  hfuse:w:0xdf:m
+	$(AVRDUDE_BASE_CMD) -B 10 -U lfuse:w:0xe2:m -U  hfuse:w:0xd9:m
 
 flash: $(OUT_BASE_NAME).bin
 	$(AVRDUDE_BASE_CMD) -B 1 -U flash:w:$(OUT_BASE_NAME).bin:r
